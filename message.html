@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💌 Message</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Satisfy', cursive;
+            background: linear-gradient(135deg, #BDA6CE 0%, #A2CB8B 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: white;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #BDA6CE;
+            font-weight: bold;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: none;
+            font-family: 'Satisfy', cursive;
+            font-size: 16px;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .message-wrapper {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 25px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            line-height: 1.8;
+            font-size: 18px;
+            color: #555;
+            text-align: center;
+        }
+
+        .message-wrapper h1 {
+            color: #BDA6CE;
+            margin-bottom: 20px;
+            font-size: 36px;
+        }
+
+        .side-images {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .polaroid {
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .polaroid:hover {
+            transform: translateY(-5px) rotate(2deg);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .polaroid img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 4px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .polaroid-caption {
+            font-family: 'Satisfy', cursive;
+            font-size: 14px;
+            color: #999;
+            min-height: 25px;
+            padding-bottom: 5px;
+        }
+
+        /* Random rotations for Polaroids */
+        .polaroid:nth-child(1) { transform: rotate(-3deg); }
+        .polaroid:nth-child(2) { transform: rotate(2deg); }
+        .polaroid:nth-child(3) { transform: rotate(-2deg); }
+        .polaroid:hover { transform: translateY(-5px) !important; }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+
+            .side-images {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .polaroid {
+                flex: 0 1 calc(50% - 15px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .back-btn {
+                display: block;
+                width: 100%;
+                text-align: center;
+            }
+
+            .message-wrapper {
+                padding: 30px 20px;
+                font-size: 16px;
+            }
+
+            .message-wrapper h1 {
+                font-size: 28px;
+            }
+
+            .side-images {
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+
+            .polaroid {
+                flex: 0 1 calc(50% - 10px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="home.html" class="back-btn">← Back</a>
+        
+        <div class="content">
+            <div class="side-images">
+                <div class="polaroid">
+                    <img src="msm1.jpg" alt="Memory 1">
+                    <div class="polaroid-caption">Us</div>
+                </div>
+                <div class="polaroid">
+                    <img src="msm2.jfif" alt="Memory 2">
+                    <div class="polaroid-caption">Together</div>
+                </div>
+                <div class="polaroid">
+                    <img src="msm3.jfif" alt="Memory 3">
+                    <div class="polaroid-caption">Forever</div>
+                </div>
+            </div>
+            
+            <div class="message-wrapper">
+                <h1>💕 My Heart</h1>
+                <p>
+                    Happy monthsary, baby ❤️ <br> I just want to say how happy and thankful I am that you came into my life. Since you came, ang daming nagbago sa’kin—in a good way. I feel more motivated, mas masaya, at mas buo yung araw ko dahil sa’yo. Thank you for always being there, for understanding me, and for loving me even on days na hindi ako perfect. I really cherish what we have, and I hope we continue to grow together and find ways to stay strong kahit may mga challenges na dumating. I’m just here, doing my best to give you the kind of love you deserve. I’m truly grateful to have you. I’ll always be here for you, supporting you in whatever happens, and loving you the way you deserve 💖
+                </p>
+            </div>
+            
+            <div class="side-images">
+                <div class="polaroid">
+                    <img src="msm4.jfif" alt="Memory 4">
+                    <div class="polaroid-caption">Love</div>
+                </div>
+                <div class="polaroid">
+                    <img src="msm5.jfif" alt="Memory 5">
+                    <div class="polaroid-caption">Always</div>
+                </div>
+                <div class="polaroid">
+                    <img src="msm6.jfif" alt="Memory 6">
+                    <div class="polaroid-caption">You & Me</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

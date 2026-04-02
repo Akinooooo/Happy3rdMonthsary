@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔐 Enter Password</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Satisfy', cursive;
+            background: linear-gradient(135deg, #BDA6CE 0%, #A2CB8B 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+        }
+
+        .password-container {
+            background: white;
+            padding: 60px 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            max-width: 400px;
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        .gif-container {
+            margin-bottom: 30px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-radius: 20px;
+            background: #f5f0fa;
+        }
+
+        .gif-container img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 20px;
+        }
+
+        h1 {
+            color: #BDA6CE;
+            margin-bottom: 20px;
+            font-size: 32px;
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 16px;
+            margin-bottom: 20px;
+            min-height: 20px;
+            animation: slideDown 0.3s ease;
+        }
+
+        .keypad {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+            max-width: 250px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .keypad-btn {
+            width: 70px;
+            height: 70px;
+            border: none;
+            border-radius: 15px;
+            background: #BDA6CE;
+            color: white;
+            font-size: 28px;
+            font-family: 'Satisfy', cursive;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 5px 15px rgba(189, 166, 206, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .keypad-btn:hover {
+            background: #a888b0;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(189, 166, 206, 0.4);
+        }
+
+        .keypad-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .keypad-btn.zero-btn {
+            grid-column: 2;
+        }
+
+        .display {
+            background: #f5f0fa;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            letter-spacing: 8px;
+            color: #BDA6CE;
+            font-weight: bold;
+        }
+
+        .button-controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .btn-clear {
+            flex: 1;
+            padding: 12px 24px;
+            background: #A2CB8B;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-family: 'Satisfy', cursive;
+            font-size: 16px;
+            transition: all 0.2s ease;
+            box-shadow: 0 5px 15px rgba(162, 203, 139, 0.3);
+        }
+
+        .btn-clear:hover {
+            background: #8ab473;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(162, 203, 139, 0.4);
+        }
+
+        .btn-submit {
+            flex: 1;
+            padding: 12px 24px;
+            background: #BDA6CE;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-family: 'Satisfy', cursive;
+            font-size: 16px;
+            transition: all 0.2s ease;
+            box-shadow: 0 5px 15px rgba(189, 166, 206, 0.3);
+        }
+
+        .btn-submit:hover {
+            background: #a888b0;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(189, 166, 206, 0.4);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="password-container">
+        <h1>💕 Unlock</h1>
+        <div class="gif-container">
+            <img id="giftImage" src="cute.gif" alt="Cute GIF">
+        </div>
+        <div class="display" id="display">••••••</div>
+        <div class="error-message" id="errorMessage"></div>
+        
+        <div class="keypad" id="keypad"></div>
+        
+        <div class="button-controls">
+            <button class="btn-clear" onclick="clearPassword()">Clear</button>
+            <button class="btn-submit" onclick="submitPassword()">Enter</button>
+        </div>
+    </div>
+
+    <script>
+        let password = '';
+        const correctPassword = '010326';
+        const display = document.getElementById('display');
+        const errorMessage = document.getElementById('errorMessage');
+        const giftImage = document.getElementById('giftImage');
+        const keypad = document.getElementById('keypad');
+
+        // Create keypad buttons in phone layout: 1 2 3 / 4 5 6 / 7 8 9 / 0
+        const phoneLayout = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+        phoneLayout.forEach((num) => {
+            const btn = document.createElement('button');
+            btn.className = 'keypad-btn';
+            if (num === 0) {
+                btn.classList.add('zero-btn');
+            }
+            btn.textContent = num;
+            btn.onclick = () => addDigit(num);
+            keypad.appendChild(btn);
+        });
+
+        function addDigit(digit) {
+            if (password.length < 6) {
+                password += digit;
+                updateDisplay();
+                errorMessage.textContent = '';
+                giftImage.src = 'cute.gif';
+            }
+        }
+
+        function clearPassword() {
+            password = '';
+            updateDisplay();
+            errorMessage.textContent = '';
+            giftImage.src = 'cute.gif';
+        }
+
+        function updateDisplay() {
+            display.textContent = '•'.repeat(password.length) + '•'.repeat(6 - password.length);
+        }
+
+        function submitPassword() {
+            if (password === correctPassword) {
+                window.location.href = 'home.html';
+            } else {
+                giftImage.src = 'sad.gif';
+                errorMessage.textContent = '😢 Wrong password, please try again';
+                password = '';
+                updateDisplay();
+            }
+        }
+
+        // Allow Enter key submission
+        document.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                submitPassword();
+            }
+        });
+    </script>
+</body>
+</html>
